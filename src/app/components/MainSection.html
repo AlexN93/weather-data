@@ -1,0 +1,87 @@
+<section class="main">
+  <div class="container">
+    <div class="jumbotron">
+      <h1 align="center">Weather Data</h1>
+      <div class="row" ng-hide="$ctrl.formData.hidden">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+          <form name="locationForm" ng-submit="$ctrl.submit()" novalidate>
+            <div class="row">
+              <div class="col-md-12">
+                <label for="location">You have rejected access to your location. Please enter manually.</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group" ng-class="{'has-error' : $ctrl.submitted && locationForm.location.$invalid}">
+                <div class="col-md-12 pb10">
+                  <input type="text" name="location" id="location" class="form-control text-center"
+                         placeholder="e.g. 'London,uk' or '94040,us'"
+                         ng-model="$ctrl.formData.location" required>
+                  <span ng-show="$ctrl.submitted && locationForm.location.$error.required" class="help-block mb0">This field is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-primary btn-md">Search</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row" ng-hide="!$ctrl.weatherData">
+        <div class="col-sm-8 col-sm-offset-2 text-center">
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Latitude: {{$ctrl.weatherData.coord.lat}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Longitude: {{$ctrl.weatherData.coord.lon}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Ground level: {{$ctrl.weatherData.main.grnd_level}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Humidity: {{$ctrl.weatherData.main.humidity}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Pressure: {{$ctrl.weatherData.main.pressure}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Sea level: {{$ctrl.weatherData.main.sea_level}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Temperature: {{$ctrl.weatherData.main.temp}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Weather: {{$ctrl.weatherData.weather[0].description}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Wind deg: {{$ctrl.weatherData.wind.deg}}</h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <h3>Wind speed: {{$ctrl.weatherData.wind.speed}}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
