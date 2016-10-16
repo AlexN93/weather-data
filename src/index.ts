@@ -3,4 +3,4 @@
 angular
   .module('app', ['ui.router', 'geolocation'])
   .service('geoLocationService', GeoLocationService)
-  .service('weatherLocationService', WeatherLocationService);
+  .service('weatherDataService', WeatherDataService);

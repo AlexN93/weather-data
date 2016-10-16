@@ -1,7 +1,7 @@
 /// <reference path="../../../typings/index.d.ts" />
 
 class MainSection {
-  static $inject = ['$scope', 'geoLocationService', 'weatherLocationService'];
+  static $inject = ['$scope', 'geoLocationService', 'weatherDataService'];
 
   submitted: boolean;
   formData: {location: string, hidden: boolean};
@@ -9,22 +9,23 @@ class MainSection {
   weatherData: any;
 
   /** @ngInject */
-  constructor(private $scope: any, private geoLocationService: GeoLocationService, private weatherLocationService: WeatherLocationService) {
+  constructor(private $scope: any, private geoLocationService: GeoLocationService, private weatherDataService: WeatherDataService) {
     this.submitted = false;
     this.formData = {location: '', hidden: true};
     this.location = {coords: {}};
     this.weatherData = null;
     this.$scope = $scope;
     this.geoLocationService = geoLocationService;
-    this.weatherLocationService = weatherLocationService;
+    this.weatherDataService = weatherDataService;
     this.getGeoLocation();
   }
 
   getGeoLocation() {
     this.geoLocationService.get().then((response) => {
       this.location = response;
+      console.log(response);
       if (this.location.coords) {
-        this.getWeatherData('lat=' + this.location.latitude + '&lon=' + this.location.coords.longitude);
+        this.getWeatherData('lat=' + this.location.coords.latitude + '&lon=' + this.location.coords.longitude);
       }
     }, (errors) => {
       this.formData.hidden = false;
@@ -47,7 +48,7 @@ class MainSection {
 
   getWeatherData(params: string) {
     console.log(params);
-    this.weatherLocationService.get(params).then((response) => {
+    this.weatherDataService.get(params).then((response) => {
       this.weatherData = response;
       console.log(this.weatherData);
     }, (errors) => {

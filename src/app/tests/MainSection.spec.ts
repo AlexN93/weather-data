@@ -5,8 +5,7 @@ describe('MainSection component', () => {
 
   describe('testing karma', function() {
     it('test', function() {
-      var one = 1;
-      expect(one).toEqual(1);
+      expect(1).toEqual(1);
     });
   });
 });

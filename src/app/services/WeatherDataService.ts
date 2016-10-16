@@ -1,6 +1,6 @@
 /// <reference path="../../../typings/index.d.ts" />
 
-class WeatherLocationService {
+class WeatherDataService {
 
   static $inject = ['$http', '$log', '$q'];
 
